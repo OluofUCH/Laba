@@ -126,7 +126,7 @@ export default function Portfolio() {
           const msg = target.querySelector('#msg')?.value || '';
 
           // Format the message for WhatsApp
-          const whatsappNumber = "2349060788918"; 
+          const whatsappNumber = "2349134878316"; 
           const textMessage = `Hello! New project inquiry:\n\n*Name:* ${name}\n*Email:* ${email}\n*Project Type:* ${type}\n\n*Message:* ${msg}`;
           
           // Encode and open the WhatsApp link
