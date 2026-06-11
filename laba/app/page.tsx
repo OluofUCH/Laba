@@ -1,5 +1,6 @@
 "use client";
 
+import { send } from "process";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 
 // --- HOOKS & UTILS ---
@@ -59,19 +60,19 @@ const WORK = [
   {
     cat: "Academic",
     title: "The Impact of Nurse Burnout on Patient Safety and Care Quality: A Systematic Review",
-    abstract: "A systematic review investigating the relationship between nurse burnout, patient safety, and quality of care. Examines how emotional exhaustion, depersonalisation, and reduced professional efficacy affect clinical performance, communication, and safety behaviours — including medication errors, missed care, and adverse events.",
+    abstract: "A systematic review investigating the relationship between nurse burnout, patient safety, and quality of care. Examines how emotional exhaustion, depersonalisation, and reduced professional efficacy affect clinical performance, communication, and safety behaviours including medication errors, missed care, and adverse events.",
     link: "https://docs.google.com/document/d/133UjUFpw9VoOsuqZvDF5Mnz_uz7GM1zucBQCEDtAWyc/edit?usp=sharing"
   },
   {
     cat: "Content",
     title: "Kanye West and the Power Structure of the Music Industry",
-    abstract: "A media and entertainment analysis exploring Kanye West's claims about ownership, corporate control, and financial power in the music industry — covering major record labels, artist ownership, fashion corporations, and the broader debate around creative independence.",
+    abstract: "A media and entertainment analysis exploring Kanye West's claims about ownership, corporate control, and financial power in the music industry, covering major record labels, artist ownership, fashion corporations, and the broader debate around creative independence.",
     link: "https://docs.google.com/document/d/1MSGxoTu6A0_zSCa-dH70U9AjaMvmPG55dQuiEcUm4hQ/edit?usp=sharing"
   },
   {
     cat: "Academic",
     title: "Cross-Cultural Leadership Between Dutch Headquarters and Chinese Operations",
-    abstract: "An analysis of leadership challenges in multicultural business environments. Applies cross-cultural frameworks — Hofstede, GLOBE, and Cultural Intelligence — to examine how Dutch and Chinese cultural differences affect leadership, communication, motivation, and negotiation.",
+    abstract: "An analysis of leadership challenges in multicultural business environments. Applies cross-cultural frameworks; Hofstede, GLOBE, and Cultural Intelligence, to examine how Dutch and Chinese cultural differences affect leadership, communication, motivation, and negotiation.",
     link: "https://docs.google.com/document/d/1ejOqJ9t1RRvet4KelNgSY7IE5zq8uTRg1xufZTHjwZk/edit?usp=sharing"
   },
   {
@@ -114,7 +115,25 @@ export default function Portfolio() {
   const [filter, setFilter] = useState("All");
   const [open, setOpen] = useState(false);
   const filtered = filter === "All" ? WORK : WORK.filter((w) => w.cat === filter);
+ const send = (e) => {
+    e.preventDefault();
+          
+          // Safely extract values using the element IDs
+          const target = e.currentTarget;
+          const name = target.querySelector('#name')?.value || '';
+          const email = target.querySelector('#email')?.value || '';
+          const type = target.querySelector('#type')?.value || '';
+          const msg = target.querySelector('#msg')?.value || '';
 
+          // Format the message for WhatsApp
+          const whatsappNumber = "2349060788918"; 
+          const textMessage = `Hello! New project inquiry:\n\n*Name:* ${name}\n*Email:* ${email}\n*Project Type:* ${type}\n\n*Message:* ${msg}`;
+          
+          // Encode and open the WhatsApp link
+          const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(textMessage)}`;
+          window.open(whatsappUrl, '_blank');
+        }
+ 
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* NAV */}
@@ -322,44 +341,44 @@ export default function Portfolio() {
       </Section>
 
       {/* CONTACT */}
-      <section id="contact" className="bg-gradient-ink py-24 text-cream md:py-32">
-        <div className="mx-auto grid max-w-6xl gap-16 px-6 md:grid-cols-[1fr_1.1fr]">
-          <Reveal>
-            <div>
-              <p className="text-xs uppercase tracking-[0.25em] text-gold">Get in touch</p>
-              <h2 className="mt-4 font-serif text-4xl leading-tight md:text-5xl">
-                Have a project that deserves careful writing?
-              </h2>
-              <p className="mt-6 max-w-md text-cream/70">
-                Tell me a little about the work — a dissertation chapter, a feature, a research brief — and I'll get back within a day.
-              </p>
-              <div className="mt-10 space-y-3 text-sm">
-                <a href="mailto:feranmim92@gmail.com" className="block gold-underline text-cream">feranmim92@gmail.com</a>
-                <div className="text-cream/60">Ibadan, Nigeria · GMT</div>
-              </div>
-            </div>
-          </Reveal>
-          <Reveal delay={150}>
-            <form
-              onSubmit={(e) => { e.preventDefault(); alert("Thanks! This is a demo form."); }}
-              className="rounded-3xl border border-cream/10 bg-cream/5 p-8 backdrop-blur md:p-10"
-            >
-              <div className="grid gap-5">
-                <Field label="Your name" id="name" />
-                <Field label="Email" id="email" type="email" />
-                <Field label="Project type" id="type" placeholder="Academic, content, research..." />
-                <div>
-                  <label htmlFor="msg" className="text-xs uppercase tracking-[0.18em] text-cream/60">Tell me about it</label>
-                  <textarea id="msg" rows={5} required className="mt-2 w-full rounded-xl border border-cream/15 bg-transparent px-4 py-3 text-cream outline-none transition-colors placeholder:text-cream/30 focus:border-gold" />
-                </div>
-                <button type="submit" className="mt-2 rounded-full bg-gold px-7 py-3.5 text-sm font-semibold text-ink shadow-gold transition-transform hover:-translate-y-0.5">
-                  Send message
-                </button>
-              </div>
-            </form>
-          </Reveal>
+    <section id="contact" className="bg-gradient-ink py-24 text-cream md:py-32">
+  <div className="mx-auto grid max-w-6xl gap-16 px-6 md:grid-cols-[1fr_1.1fr]">
+    <Reveal>
+      <div>
+        <p className="text-xs uppercase tracking-[0.25em] text-gold">Get in touch</p>
+        <h2 className="mt-4 font-serif text-4xl leading-tight md:text-5xl">
+          Have a project that deserves careful writing?
+        </h2>
+        <p className="mt-6 max-w-md text-cream/70">
+          Tell me a little about the work — a dissertation chapter, a feature, a research brief — and I'll get back within a day.
+        </p>
+        <div className="mt-10 space-y-3 text-sm">
+          <a href="mailto:feranmim92@gmail.com" className="block gold-underline text-cream">feranmim92@gmail.com</a>
+          <div className="text-cream/60">Ibadan, Nigeria · GMT</div>
         </div>
-      </section>
+      </div>
+    </Reveal>
+    <Reveal delay={150}>
+      <form
+        onSubmit={send}
+        className="rounded-3xl border border-cream/10 bg-cream/5 p-8 backdrop-blur md:p-10"
+      >
+        <div className="grid gap-5">
+          <Field label="Your name" id="name" />
+          <Field label="Email" id="email" type="email" />
+          <Field label="Project type" id="type" placeholder="Academic, content, research..." />
+          <div>
+            <label htmlFor="msg" className="text-xs uppercase tracking-[0.18em] text-cream/60">Tell me about it</label>
+            <textarea id="msg" rows={5} required className="mt-2 w-full rounded-xl border border-cream/15 bg-transparent px-4 py-3 text-cream outline-none transition-colors placeholder:text-cream/30 focus:border-gold" />
+          </div>
+          <button onClick={send} className="mt-2 rounded-full bg-gold px-7 py-3.5 text-sm font-semibold text-ink shadow-gold transition-transform hover:-translate-y-0.5">
+            Send message
+          </button>
+        </div>
+      </form>
+    </Reveal>
+  </div>
+</section>
     </div>
   );
 }
