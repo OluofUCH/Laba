@@ -115,7 +115,7 @@ export default function Portfolio() {
   const [filter, setFilter] = useState("All");
   const [open, setOpen] = useState(false);
   const filtered = filter === "All" ? WORK : WORK.filter((w) => w.cat === filter);
- const send = (e) => {
+ const send = (e:any) => {
     e.preventDefault();
           
           // Safely extract values using the element IDs
